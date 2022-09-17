@@ -520,8 +520,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    41,    41,    44,   111,   133,   133,   133,   133,   133,
-     135,   143,   146,   147,   148,   149,   152,   155,   157
+       0,    41,    41,    44,   107,   129,   129,   129,   129,   129,
+     131,   139,   142,   143,   144,   145,   148,   151,   153
 };
 #endif
 
@@ -1110,12 +1110,9 @@ yyreduce:
          cout<<"define field :"<<(yyvsp[-1].str)<<endl;
          if(layout_data.find((yyvsp[-1].str))!=layout_data.end())
          {
-        cout<<"yo";
          (yyval.str)= new char[layout_data[(yyvsp[-1].str)].size()];
          strcpy((yyval.str),layout_data[(yyvsp[-1].str)].c_str());
          }
-
-
     }
     else if(string((yyvsp[-3].str))=="@include")
     {
@@ -1136,11 +1133,10 @@ yyreduce:
         else
         {
             cout<<"cannot find file :"<<dir;
-        }
-        
+        }   
     }
     else if (string((yyvsp[-3].str))=="@extends")
-{
+    {
         cout<<"extend file: "<<dir<<endl;
       
         ifstream file(dir.c_str(),ios::in | ios::binary |ios::ate);
@@ -1166,11 +1162,11 @@ yyreduce:
     }
     loop=true;
      }
-#line 1170 "h5parse.cxx"
+#line 1166 "h5parse.cxx"
     break;
 
   case 4: /* command_call: COMMAND LPAREN STRING RPAREN LBRACE tails RBRACE  */
-#line 112 "h5parse.y"
+#line 108 "h5parse.y"
     {
     if (string((yyvsp[-6].str))=="@repeat")
     {
@@ -1190,17 +1186,35 @@ yyreduce:
     }
 
     }
-#line 1194 "h5parse.cxx"
+#line 1190 "h5parse.cxx"
     break;
 
   case 5: /* tail: TXT  */
-#line 133 "h5parse.y"
+#line 129 "h5parse.y"
    {(yyval.str)=new char[2]; (yyval.str)[0]=(yyvsp[0].c); (yyval.str)[1]='\0';}
-#line 1200 "h5parse.cxx"
+#line 1196 "h5parse.cxx"
+    break;
+
+  case 6: /* tail: RPAREN  */
+#line 129 "h5parse.y"
+                                                  {(yyval.str)=new char[2]; (yyval.str)[0]=(yyvsp[0].c); (yyval.str)[1]='\0';}
+#line 1202 "h5parse.cxx"
+    break;
+
+  case 7: /* tail: LPAREN  */
+#line 129 "h5parse.y"
+                                                                                                 {(yyval.str)=new char[2]; (yyval.str)[0]=(yyvsp[0].c); (yyval.str)[1]='\0';}
+#line 1208 "h5parse.cxx"
+    break;
+
+  case 8: /* tail: STRING  */
+#line 129 "h5parse.y"
+                                                                                                                                               {string s='\"'+string((yyvsp[0].str))+'\"' ; (yyval.str)=new char[s.size()+1] ;sprintf((yyval.str),"%s",s.c_str());}
+#line 1214 "h5parse.cxx"
     break;
 
   case 10: /* tails: tails tail  */
-#line 136 "h5parse.y"
+#line 132 "h5parse.y"
 {char *str = (char*) malloc(strlen((yyvsp[-1].str)) + strlen((yyvsp[0].str)) + 1);
       strcpy(str, (yyvsp[-1].str));
       strcat(str, (yyvsp[0].str));
@@ -1208,43 +1222,43 @@ yyreduce:
       free((yyvsp[-1].str));
       (yyval.str) = str;
       }
-#line 1212 "h5parse.cxx"
+#line 1226 "h5parse.cxx"
     break;
 
   case 12: /* content_part: TXT  */
-#line 146 "h5parse.y"
+#line 142 "h5parse.y"
                  {pdata+=(yyvsp[0].c);}
-#line 1218 "h5parse.cxx"
+#line 1232 "h5parse.cxx"
     break;
 
   case 13: /* content_part: RPAREN  */
-#line 147 "h5parse.y"
+#line 143 "h5parse.y"
         {pdata+=(yyvsp[0].c);}
-#line 1224 "h5parse.cxx"
-    break;
-
-  case 14: /* content_part: LPAREN  */
-#line 148 "h5parse.y"
-        {pdata+=(yyvsp[0].c);}
-#line 1230 "h5parse.cxx"
-    break;
-
-  case 15: /* content_part: STRING  */
-#line 149 "h5parse.y"
-        {  
-    string a=(yyvsp[0].str);
-    pdata+='\"'+a+'\"'; }
 #line 1238 "h5parse.cxx"
     break;
 
-  case 16: /* content_part: command_call  */
-#line 152 "h5parse.y"
-             {(yyval.str)=(yyvsp[0].str);  pdata+=(yyval.str);}
+  case 14: /* content_part: LPAREN  */
+#line 144 "h5parse.y"
+        {pdata+=(yyvsp[0].c);}
 #line 1244 "h5parse.cxx"
     break;
 
+  case 15: /* content_part: STRING  */
+#line 145 "h5parse.y"
+        {  
+    string a=(yyvsp[0].str);
+    pdata+='\"'+a+'\"'; }
+#line 1252 "h5parse.cxx"
+    break;
 
-#line 1248 "h5parse.cxx"
+  case 16: /* content_part: command_call  */
+#line 148 "h5parse.y"
+             {(yyval.str)=(yyvsp[0].str);  pdata+=(yyval.str);}
+#line 1258 "h5parse.cxx"
+    break;
+
+
+#line 1262 "h5parse.cxx"
 
       default: break;
     }
@@ -1437,7 +1451,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 159 "h5parse.y"
+#line 155 "h5parse.y"
 
 
 //error message to display at sintax error
