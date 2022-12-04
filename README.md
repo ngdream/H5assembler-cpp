@@ -10,6 +10,10 @@ you will never need to rewrite the same text again
 
 ## how to build
 
+### Clone this repo 
+
+`git clone https://github.com/ngdream/H5assembler-cpp.git`
+
 - ### Linux debian 
 ** Run `make debian` in the project root, it will help you to use H5A from everywhere in your computer.
 
