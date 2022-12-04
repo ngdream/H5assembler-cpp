@@ -36,6 +36,8 @@ If you used the `make debian` command to build, you can simply run the following
 
 `H5A entryFile.html outputFile.html`
 
+- ### Other
+
 Other wise you will need to hard run the exec file like:
 
 `./H5A entryFile.html outputFile.html`
