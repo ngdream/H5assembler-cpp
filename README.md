@@ -4,26 +4,44 @@
 its made for all web developer who doesn't like to write the same code  in different file  which his currency : ***``  don't repeat yourself ``***<br/>
 you will never need to rewrite the same text again
 
-<span align="center">**this is a precompiled version made for c++ developers who want to contribute to h5assembler**</sp### with g++
+<span align="center">**this is a precompiled version made for c++ developers who want to contribute to h5assembler**</span> 
 
 
 
 ## how to build
 
-### with g++
+### Clone this repo 
 
-its very simple to compile h5assembler 
-```cmd
-g++ h5lex.cxx h5parse.cxx h5mlex.cxx h5mparse.cxx  h5maker.cpp h5.cpp -o H5A.exe
-```
+`git clone https://github.com/ngdream/H5assembler-cpp.git`
 
-### using make
+- ### Linux debian 
+** Run `make debian` in the project root, it will help you to use H5A from everywhere in your computer.
 
-```
-make
-```
+- ### Other
 
-for more information about h5assembler  check the official [repository](https://github.com/ngdream/H5assembler)
+** But if you want, you can just build the exec file with 
+
+`g++ h5lex.cxx h5parse.cxx h5mlex.cxx h5mparse.cxx  H5maker.cpp H5.cpp -o H5A`
+
+or:
+
+`make`
+
+Modify the output `H5A` to `H5A.exe` if you need an exec file.
+
+## Usage
+
+- ### Linux Debian
+If you used the `make debian` command to build, you can simply run the following command from anywhere in your computer:
+
+`H5A entryFile.html outputFile.html`
+
+- ### Other
+
+Other wise you will need to hard run the exec file like:
+
+`./H5A entryFile.html outputFile.html`
+
 
 
 
